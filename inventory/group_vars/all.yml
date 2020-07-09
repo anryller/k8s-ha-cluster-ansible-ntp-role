@@ -1,0 +1,30 @@
+---
+# Common Configuration
+update_hosts_file: yes
+
+unwanted_services:
+  - irqbalance
+  - postfix
+  - firewalld
+
+update_all_packages: yes
+
+common_packages:
+  - "epel-release"
+  - "deltarpm"
+  - "vim"
+  - "mc"
+  - "less"
+  - "curl"
+  - "wget"
+  - "zlib"
+  - "unzip"
+  - "telnet"
+  - "htop"
+  - "nano"
+  - "rsync"
+  - "net-tools"
+  - "bind-utils"
+  - "bash-completion-extras"
+  - "sed"
+

@@ -1,0 +1,19 @@
+---
+- name: common configuration new hosts
+  hosts: all
+
+  roles:
+  - set_hostname
+  - selinux_disable
+  - service_disable
+  - swap_disable
+  - common_packages
+  - sshd_setup
+  - ntp
+
+  post_tasks:
+  - name: Reboot a virtual machine that might have lots of updates to apply
+    reboot:
+      connect_timeout: 60
+      msg: "Reboot initiated by Ansible"
+      reboot_timeout: 120

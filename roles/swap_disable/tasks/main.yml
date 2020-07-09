@@ -1,0 +1,18 @@
+---
+- name: Disable swap
+  command: swapoff -a
+  changed_when: true
+  when: ansible_swaptotal_mb > 0
+ 
+- name: Remove Swap from fstab
+  mount:
+    name: swap
+    fstype: swap
+    state: absent
+
+- name: Add vm.swappiness=0 to sysctl.conf
+  sysctl:
+    name: vm.swappiness
+    value: '0'
+    state: present
+

@@ -1,0 +1,6 @@
+---
+- name: Disable SELinux in config
+  selinux:
+    state: disabled
+  notify:
+  - disable selinux online

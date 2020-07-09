@@ -1,0 +1,12 @@
+---
+- name: set hostname
+  hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: update /etc/hosts file
+  blockinfile:
+    dest: /etc/hosts
+    content: "{{ lookup('template', 'templates/etc/hosts.j2') }}"
+    state: present
+  when: update_hosts_file|bool
+

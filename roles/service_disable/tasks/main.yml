@@ -1,0 +1,7 @@
+---
+- name: Disable services
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items: "{{ unwanted_services }}"
