@@ -1,0 +1,23 @@
+[Unit]
+Description=haproxy
+After=docker.service
+
+[Service]
+EnvironmentFile=-/etc/environment
+ExecStartPre=-/usr/bin/docker rm -f haproxy
+ExecStart=/usr/bin/docker run --name=haproxy \
+  -v "/etc/haproxy:/usr/local/etc/haproxy:Z" \
+  --net=host \
+  --cpu-period=50000 \
+  --cpu-quota=50000 \
+  --memory=512MB \
+  {{ haproxy_container_image }}
+ExecStop=/usr/bin/docker stop haproxy
+Restart=always
+RestartSec=10s
+TimeoutStartSec=120
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target
+

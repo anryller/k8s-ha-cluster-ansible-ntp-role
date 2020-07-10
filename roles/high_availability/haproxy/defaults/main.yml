@@ -1,0 +1,4 @@
+---
+haproxy_container_image: "haproxy:lts"
+haproxy_stats_port: 9000
+haproxy_apiserver_port: 5443

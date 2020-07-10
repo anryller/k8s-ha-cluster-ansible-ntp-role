@@ -1,0 +1,28 @@
+---
+- name: Install keepalived
+  become: yes
+  yum:
+    name: keepalived
+
+- name: Deploy keepalived script
+  become: yes
+  template:
+    src: check_apiserver.sh.j2
+    dest: /etc/keepalived/check_apiserver.sh
+    mode: "a+x"
+
+- name: Deploy keepalived config
+  become: yes
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify:
+    - Restart keepalived
+
+- name: Start keepalived
+  systemd:
+    state: started
+    daemon_reload: yes
+    name: keepalived
+    enabled: yes
+

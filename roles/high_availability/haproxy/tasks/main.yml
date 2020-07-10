@@ -1,0 +1,30 @@
+---
+- name: Pulling image {{ haproxy_container_image }}
+  docker_image:
+    name: "{{ haproxy_container_image }}"
+    source: pull
+
+- name: Creates HAproxy directory
+  file:
+    path: /etc/haproxy
+    state: directory
+
+- name: Set up HAproxy config
+  template: 
+    src: haproxy.cfg.j2 
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: Set up HAproxy systemd service
+  template:
+    src: haproxy.service.j2
+    dest: /etc/systemd/system/haproxy.service
+  notify:
+    - Restart HAproxy
+
+- name: Start HAproxy
+  systemd:
+    name: haproxy
+    daemon_reload: yes
+    state: started
+    enabled: yes
+

@@ -1,0 +1,59 @@
+---
+- name: Install required packages
+  yum:
+    name: "{{ docker_requered_packages }}"
+    state: present
+    
+- name: Add the Docker repository
+  shell: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+
+- name: Upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+    update_cache: yes
+
+- name: Install Docker CE
+  yum:
+    name: "{{ docker_packages }}"
+    state: present
+
+- name: Creates Docker directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/docker
+    - /etc/systemd/system/docker.service.d
+
+- name: Add the br_netfilter module
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Setup kernel parameters for Docker
+  sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - { name: net.ipv4.ip_forward, value: 1 }
+    - { name: net.bridge.bridge-nf-call-ip6tables, value: 1 }
+    - { name: net.bridge.bridge-nf-call-iptables, value: 1 }
+
+- name: Set up the Docker daemon
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+  notify:
+    - Restart Docker
+
+- name: Start Docker
+  systemd:
+    name: docker
+    daemon_reload: yes
+    state: started
+    enabled: yes
+

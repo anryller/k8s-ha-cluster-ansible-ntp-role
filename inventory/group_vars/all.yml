@@ -27,4 +27,5 @@ common_packages:
   - "bind-utils"
   - "bash-completion-extras"
   - "sed"
+  - "jq"
 

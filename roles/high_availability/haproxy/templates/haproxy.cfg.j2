@@ -1,0 +1,45 @@
+global
+  log 127.0.0.1 local0
+  maxconn 4096
+  ssl-default-bind-ciphers kEECDH+aRSA+AES:kRSA+AES:+AES256:RC4-SHA:!kEDH:!LOW:!EXP:!MD5:!aNULL:!eNULL
+
+defaults
+  mode                http
+  log                 global
+  option              httplog
+  option              dontlognull
+  timeout connect     5s
+  timeout client      50s
+  timeout client-fin  50s
+  timeout server      50s
+  timeout tunnel      1h
+
+listen stats
+  bind  :{{haproxy_stats_port}}
+  stats enable
+  stats hide-version
+  stats refresh 30s
+  stats show-node
+  stats uri /stats
+
+#############################
+#  api-proxy config
+#############################
+
+frontend front-api-proxy
+  bind *:{{haproxy_apiserver_port}}
+  mode tcp
+  option tcplog
+  tcp-request inspect-delay 5s
+  default_backend back-api-proxy
+
+backend back-api-proxy
+  mode tcp
+  option tcplog
+  option tcp-check
+  balance roundrobin
+  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+{% for item in groups['k8s_masters'] %}
+  server {{ item }} {{ hostvars[item].ansible_default_ipv4.address }}:6443 check
+{% endfor %}
+
