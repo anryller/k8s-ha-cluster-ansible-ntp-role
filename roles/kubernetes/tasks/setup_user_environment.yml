@@ -1,0 +1,27 @@
+---
+- name: Create .kube folder
+  file:
+    path: "~{{ ansible_ssh_user }}/.kube"
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+  when: inventory_hostname in groups["k8s_masters"]
+
+- name: Copy admin.conf to .kube folder
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "~{{ ansible_ssh_user }}/.kube/config"
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+    remote_src: yes
+  when: inventory_hostname in groups["k8s_masters"]
+
+- name: Set up alias and autocompletion for kubectl
+  lineinfile:
+    dest: "~{{ ansible_ssh_user }}/.bashrc"
+    line: "{{ item }}"
+  with_items:
+    - source <(kubectl completion bash)
+    - alias k=kubectl
+    - complete -F __start_kubectl k
+

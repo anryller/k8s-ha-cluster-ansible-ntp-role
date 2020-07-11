@@ -10,7 +10,8 @@
   - high_availability/haproxy
   - high_availability/keepalived
 
-- name: Install Kubernetes
+- name: Deploy Kubernetess cluster
   hosts: all
   roles:
   - kubernetes
+

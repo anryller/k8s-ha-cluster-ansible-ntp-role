@@ -1,0 +1,7 @@
+---
+- name: Initialize the first control plane node
+  shell: kubeadm init --control-plane-endpoint "{{ lb_virtual_ip }}:5443" --upload-certs --pod-network-cidr "{{ pod_network_cidr }}" --service-cidr "{{ service_network_cidr }}"
+  register: output
+
+- name: Storing Logs and Generated token for future purpose.
+  local_action: copy content={{ output.stdout }} dest="./token.log"

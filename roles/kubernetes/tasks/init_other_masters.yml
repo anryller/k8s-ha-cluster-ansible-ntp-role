@@ -1,0 +1,12 @@
+---
+- name: Initialize the first control plane node
+  local_action: shell grep -m 1 -A 2 "kubeadm join {{ lb_virtual_ip }}" ./token.log
+  register: kubeadm_join_command
+
+- set_fact:
+    kubeadm_join_contol_plate: "{{ kubeadm_join_command.stdout }}"
+
+- debug: var=kubeadm_join_contol_plate
+
+- name: Add new Kubernetes master member
+  shell: "{{ kubeadm_join_contol_plate }}"

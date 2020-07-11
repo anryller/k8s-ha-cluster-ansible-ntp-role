@@ -1,35 +1,26 @@
 ---
-- name: Add kubernetes repository
-  yum_repository:
-    name: Kubernetes
-    description: Kubernetes repository
-    file: kubernetes
-    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-    gpgcheck: yes
-    enabled: yes
-    repo_gpgcheck: yes
-    exclude:
-      - kubelet
-      - kubeadm
-      - kubectl
+- name: Installing kubeadm
+  include_tasks: installing_kubeadm.yml
 
-- name: Installing kubeadm, kubelet and kubectl
-  yum:
-    name: "{{ packages }}"
-    state: present
-    disable_excludes: Kubernetes
-  vars:
-    packages:
-      - kubelet
-      - kubeadm
-      - kubectl
+- name: Download Kubernetes container images
+  shell: kubeadm config images pull
+  when: inventory_hostname in groups["k8s_masters"]
 
-- name: Start kubelet
-  systemd:
-    name: kublet
-    state: started
-    daemon_reload: yes
-    name: kublet
-    enabled: yes
+- name: Initializing first control plane node
+  include_tasks: init_first_master.yml
+  when: inventory_hostname == groups["k8s_masters"][0]
 
+- name: Initializing other control plane nodes
+  include_tasks: init_other_masters.yml
+  when: inventory_hostname != groups["k8s_masters"][0] and inventory_hostname in groups["k8s_masters"]
+
+- name: Setup user environment
+  include_tasks: setup_user_environment.yml
+
+- name: Join Kubernetes Worker Nodes
+  include_tasks: join_workers.yml
+  when: inventory_hostname in groups["k8s_workers"]
+
+- name: Install calico pod network
+  command: kubectl apply -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+  when: inventory_hostname == groups["k8s_masters"][0]
