@@ -1,0 +1,10 @@
+---
+- name: Deploy Kubernetess cluster
+  hosts: all
+  roles:
+  - kubernetes/packages
+  - kubernetes/masters
+  - kubernetes/user_environment
+  - kubernetes/network
+  - kubernetes/workers
+

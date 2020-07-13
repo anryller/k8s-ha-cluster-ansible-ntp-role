@@ -1,0 +1,6 @@
+---
+- name: Deploy High Avaliability layer
+  hosts: k8s_lb
+  roles:
+  - haproxy
+  - keepalived

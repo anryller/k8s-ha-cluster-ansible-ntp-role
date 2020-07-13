@@ -36,15 +36,15 @@
 [control-plane] Creating static Pod manifest for "kube-scheduler"
 [etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
 [wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
-[apiclient] All control plane components are healthy after 21.036349 seconds
+[apiclient] All control plane components are healthy after 22.425344 seconds
 [upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
 [kubelet] Creating a ConfigMap "kubelet-config-1.18" in namespace kube-system with the configuration for the kubelets in the cluster
 [upload-certs] Storing the certificates in Secret "kubeadm-certs" in the "kube-system" Namespace
 [upload-certs] Using certificate key:
-29e1bd36817dd97dfc3f7666885290bb0ce2fe10b9efba76759e7cd3d3ed093c
+cf8433f80a098aa4f89266e74edd9cad8b985187e9b5132a5cef7cc7f5dd6475
 [mark-control-plane] Marking the node k8s-master1.test.lab as control-plane by adding the label "node-role.kubernetes.io/master=''"
 [mark-control-plane] Marking the node k8s-master1.test.lab as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
-[bootstrap-token] Using token: ycjyzk.tgshxpske2ww0b9u
+[bootstrap-token] Using token: hrozoz.xp7n26rtu6s1h5is
 [bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
 [bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to get nodes
 [bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
@@ -70,9 +70,9 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 
 You can now join any number of the control-plane node running the following command on each as root:
 
-  kubeadm join 192.168.100.50:5443 --token ycjyzk.tgshxpske2ww0b9u \
-    --discovery-token-ca-cert-hash sha256:aaffd8abc8f5a598b94f9551374b0cc0e7949c33ea51120e32ef040ee480a9af \
-    --control-plane --certificate-key 29e1bd36817dd97dfc3f7666885290bb0ce2fe10b9efba76759e7cd3d3ed093c
+  kubeadm join 192.168.100.50:5443 --token hrozoz.xp7n26rtu6s1h5is \
+    --discovery-token-ca-cert-hash sha256:8754a4eda9f0206dba510bf17156dd5c4fe43a0e4dfadd2d83c06716d5976ae2 \
+    --control-plane --certificate-key cf8433f80a098aa4f89266e74edd9cad8b985187e9b5132a5cef7cc7f5dd6475
 
 Please note that the certificate-key gives access to cluster sensitive data, keep it secret!
 As a safeguard, uploaded-certs will be deleted in two hours; If necessary, you can use
@@ -80,5 +80,5 @@ As a safeguard, uploaded-certs will be deleted in two hours; If necessary, you c
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 192.168.100.50:5443 --token ycjyzk.tgshxpske2ww0b9u \
-    --discovery-token-ca-cert-hash sha256:aaffd8abc8f5a598b94f9551374b0cc0e7949c33ea51120e32ef040ee480a9af 
+kubeadm join 192.168.100.50:5443 --token hrozoz.xp7n26rtu6s1h5is \
+    --discovery-token-ca-cert-hash sha256:8754a4eda9f0206dba510bf17156dd5c4fe43a0e4dfadd2d83c06716d5976ae2 

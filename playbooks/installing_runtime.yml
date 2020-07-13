@@ -1,0 +1,5 @@
+---
+- name: Install container runtime
+  hosts: all
+  roles:
+  - container_runtime/docker

@@ -1,0 +1,4 @@
+---
+- name: Install calico pod network
+  command: kubectl apply -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+  when: inventory_hostname == groups["k8s_masters"][0]

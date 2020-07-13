@@ -1,0 +1,4 @@
+---
+- name: Join Kubernetes Worker Nodes
+  include_tasks: join_workers.yml
+  when: inventory_hostname in groups["k8s_workers"]

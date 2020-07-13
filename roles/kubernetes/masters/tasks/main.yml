@@ -1,7 +1,4 @@
 ---
-- name: Installing kubeadm
-  include_tasks: installing_kubeadm.yml
-
 - name: Download Kubernetes container images
   shell: kubeadm config images pull
   when: inventory_hostname in groups["k8s_masters"]
@@ -13,14 +10,3 @@
 - name: Initializing other control plane nodes
   include_tasks: init_other_masters.yml
   when: inventory_hostname != groups["k8s_masters"][0] and inventory_hostname in groups["k8s_masters"]
-
-- name: Setup user environment
-  include_tasks: setup_user_environment.yml
-
-- name: Join Kubernetes Worker Nodes
-  include_tasks: join_workers.yml
-  when: inventory_hostname in groups["k8s_workers"]
-
-- name: Install calico pod network
-  command: kubectl apply -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
-  when: inventory_hostname == groups["k8s_masters"][0]
