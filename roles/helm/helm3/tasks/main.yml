@@ -1,0 +1,41 @@
+---
+- name: Check that the Helm installed
+  stat:
+    path: /usr/local/bin/helm
+  register: stat_result
+
+- name: Download installer Helm 3
+  get_url:
+    url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    dest: /tmp/get-helm-3
+    mode: 0755
+  when: not stat_result.stat.exists
+
+- name: Install Helm 3
+  shell: "/tmp/get-helm-3"
+  when: not stat_result.stat.exists
+
+- name: Remove the get-helm-3
+  file:
+    path: "/tmp/get-helm-3"
+    state: absent
+  when: not stat_result.stat.exists
+
+- name: Set autocompletion for helm
+  lineinfile:
+    dest: "~{{ ansible_ssh_user }}/.bashrc"
+    line: "source <(helm completion bash)"
+  when: not stat_result.stat.exists
+
+- name: Add Helm Chart repository
+  shell: helm repo add {{ item.name }} {{ item.url }}
+  #when: not stat_result.stat.exists
+  with_items:
+    - { name: "stable", url: "https://kubernetes-charts.storage.googleapis.com/" }
+    - { name: "kubernetes-dashboard", url: "https://kubernetes.github.io/dashboard/" }
+    - { name: "elastic", url: "https://helm.elastic.co" }
+
+- name: Update Help Chart repository
+  shell: helm repo update
+  #when: not stat_result.stat.exists
+

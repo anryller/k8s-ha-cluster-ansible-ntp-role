@@ -1,0 +1,23 @@
+controller:
+  service:
+    enabled: true
+    externalIPs:
+      - 192.168.100.54
+      - 192.168.100.55
+      - 192.168.100.56
+  nodeSelector:
+    node-role.kubernetes.io/edge: ''
+  tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+  metrics:
+    enabled: true
+defaultBackend:
+  nodeSelector:
+    node-role.kubernetes.io/edge: ''
+  tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+

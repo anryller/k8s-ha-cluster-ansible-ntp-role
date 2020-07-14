@@ -1,0 +1,19 @@
+---
+- name: Create Kubernetes namespace kube-dashboard
+  k8s:
+    name: kube-dashboard
+    api_version: v1
+    kind: Namespace
+    state: present
+  when: inventory_hostname in groups["k8s_masters"]
+
+- name: Create kubernetes-dashboard chart value
+  template:
+    src: kubernetes-dashboard-values.yml.j2
+    dest: /tmp/kubernetes-dashboard-values.yml
+  when: inventory_hostname == groups["k8s_masters"][0]
+
+- name: Install kubernetes dashboard chart
+  shell: helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --namespace kube-dashboard --values=/tmp/kubernetes-dashboard-values.yml
+  when: inventory_hostname == groups["k8s_masters"][0]
+

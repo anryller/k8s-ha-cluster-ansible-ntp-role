@@ -1,0 +1,27 @@
+---
+- name: Create Kubernetes namespace kube-monitoring
+  k8s:
+    name: kube-monitoring
+    api_version: v1
+    kind: Namespace
+    state: present
+  when: inventory_hostname in groups["k8s_masters"]
+
+- name: Fix etcd metric url
+  lineinfile:
+    path: /etc/kubernetes/manifests/etcd.yaml
+    regexp: '- --listen-metrics-urls=http://127.0.0.1:2381'
+    line: '    - --listen-metrics-urls=http://0.0.0.0:2381'
+    backup: yes
+  when: inventory_hostname in groups["k8s_masters"]
+
+- name: Create prometheus-operator chart value
+  template:
+    src: prometheus-operator-values.yml.j2
+    dest: /tmp/prometheus-operator-values.yml
+  when: inventory_hostname == groups["k8s_masters"][0]
+
+- name: Install prometheus-operator chart
+  shell: helm upgrade --install prometheus-operator stable/prometheus-operator --namespace kube-monitoring --values /tmp/prometheus-operator-values.yml
+  when: inventory_hostname == groups["k8s_masters"][0]
+

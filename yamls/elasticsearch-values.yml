@@ -1,0 +1,16 @@
+clusterName: elasticsearch
+
+replicas: 3
+minimumMasterNodes: 2
+
+resources:
+  requests:
+    cpu: "1000m"
+    memory: "1Gi"
+  limits:
+    cpu: "2000m"
+    memory: "2Gi"
+
+persistence:
+  enabled: false
+

@@ -1,0 +1,30 @@
+---
+- name: Create Kubernetes namespace ingress-nginx
+  k8s:
+    name: ingress-nginx
+    api_version: v1
+    kind: Namespace
+    state: present
+  when: inventory_hostname in groups["k8s_masters"]
+
+- name: Check edge label exists
+  shell: kubectl get nodes -l node-role.kubernetes.io/edge | grep {{ inventory_hostname }} | cat
+  delegate_to: "{{ groups['k8s_masters'][0] }}"
+  register: label_exists
+  ignore_errors: true
+  when: inventory_hostname in groups["k8s_workers"]
+
+- name: Set edge label for selected node
+  shell: kubectl label node {{ inventory_hostname }} node-role.kubernetes.io/edge=
+  delegate_to: "{{ groups['k8s_masters'][0] }}"
+  when: inventory_hostname in groups["k8s_workers"] and label_exists.stdout | length == 0
+
+- name: Create ingress nginx chart value
+  template:
+    src: nginx-ingress-values.yml.j2
+    dest: /tmp/nginx-ingress.yaml
+  when: inventory_hostname == groups["k8s_masters"][0]
+
+- name: Install ingress nginx chart
+  shell: helm upgrade --install nginx-ingress stable/nginx-ingress --namespace ingress-nginx -f /tmp/nginx-ingress.yaml
+  when: inventory_hostname == groups["k8s_masters"][0]

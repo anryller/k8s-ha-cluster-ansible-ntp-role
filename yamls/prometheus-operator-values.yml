@@ -1,0 +1,11 @@
+kubeEtcd:
+  endpoints:
+    - 192.168.100.51
+    - 192.168.100.52
+    - 192.168.100.53
+  serviceMonitor:
+    insecureSkipVerify: true
+    scheme: http
+  service: 
+    port: 2381
+    targetPort: 2381

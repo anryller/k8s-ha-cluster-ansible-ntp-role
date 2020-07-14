@@ -1,0 +1,9 @@
+---
+- name: Install helm 3 applications
+  hosts: all
+  roles:
+  #- helm/ingress-nginx
+  #- helm/metrics-server
+  #- helm/prometheus
+  - helm/kubernetes-dashboard
+

@@ -1,6 +1,6 @@
 ---
-- name: common configuration new hosts
-  hosts: all
+- name: Deploy Kubernetess cluster
+  hosts: k8s_workers
 
   roles:
   - prepare_host/set_hostname
@@ -10,11 +10,15 @@
   - prepare_host/packages
   - prepare_host/sshd
   - prepare_host/ntp
+  - container_runtime/docker
+  - kubernetes/packages
+  - kubernetes/user_environment
+  - kubernetes/workers
 
   post_tasks:
   - name: Reboot a virtual machine that might have lots of updates to apply
     reboot:
-      pre_reboot_delay: 10
-      post_reboot_delay: 90
+      connect_timeout: 60
       msg: "Reboot initiated by Ansible"
       reboot_timeout: 120
+

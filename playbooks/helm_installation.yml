@@ -2,4 +2,4 @@
 - name: Install Helm 3
   hosts: k8s_masters
   roles:
-  - helm3
+  - helm/helm3

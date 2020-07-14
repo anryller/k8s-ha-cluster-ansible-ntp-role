@@ -29,3 +29,5 @@ common_packages:
   - "sed"
   - "jq"
   - "open-vm-tools"
+  - "python2-openshift"
+  - "PyYAML"

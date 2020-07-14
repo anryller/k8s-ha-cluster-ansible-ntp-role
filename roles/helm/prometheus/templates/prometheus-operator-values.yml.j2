@@ -1,0 +1,29 @@
+alertmanager:
+  ingress:
+    enabled: true
+    path: /
+    hosts:
+      - alertmanager.{{ apps_domain }}
+grafana:
+  ingress:
+    enabled: true
+    path: /
+    hosts:
+      - grafana.{{ apps_domain }}
+prometheus:
+  ingress:
+    enabled: true
+    path: /
+    hosts:
+      - prometheus.{{ apps_domain }}
+kubeEtcd:
+  endpoints:
+{% for item in groups['k8s_masters'] %}
+    - {{ hostvars[item].ansible_default_ipv4.address }}
+{% endfor %}
+  serviceMonitor:
+    insecureSkipVerify: true
+    scheme: http
+  service: 
+    port: 2381
+    targetPort: 2381

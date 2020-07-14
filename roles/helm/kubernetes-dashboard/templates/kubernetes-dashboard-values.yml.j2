@@ -1,0 +1,21 @@
+ingress:
+  enabled: true
+  labels:
+    key: value
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: 'true'
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  paths:
+    - /
+  hosts:
+    - dashboard.{{ apps_domain }}
+  tls:
+    - secretName: kubernetes-dashboard-tls
+      hosts:
+        - dashboard.{{ apps_domain }}
+metricsScraper:
+  enabled: true
+rbac:
+  create: true
+  clusterReadOnlyRole: true

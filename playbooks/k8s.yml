@@ -2,5 +2,5 @@
 - import_playbook: installing_runtime.yml
 - import_playbook: deploy_ha_layer.yml
 - import_playbook: deploy_kubernetes.yml
-- import_playbook: installing_helm3.yml
+- import_playbook: helm3_installation.yml
 

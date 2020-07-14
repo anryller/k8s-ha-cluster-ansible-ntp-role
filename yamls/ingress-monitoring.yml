@@ -1,0 +1,45 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: monitoring
+spec:
+  rules:
+  - host: grafana.apps.test.lab
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus-operator-grafana
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus-ingress
+  namespace: monitoring
+spec:
+  rules:
+  - host: prometheus.apps.test.lab
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus-operator-prometheus
+          servicePort: 9090
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: alertmanager-ingress
+  namespace: monitoring
+spec:
+  rules:
+  - host: alertmanager.apps.test.lab
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus-operator-alertmanager
+          servicePort: 9093
