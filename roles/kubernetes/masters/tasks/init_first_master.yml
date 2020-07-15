@@ -1,5 +1,5 @@
 ---
-- name: Create ccluster configuration
+- name: Create cluster configuration
   template:
     src: cluster_config.yml.j2
     dest: /tmp/cluster_config.yml

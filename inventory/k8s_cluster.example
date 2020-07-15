@@ -1,0 +1,42 @@
+[k8s_masters]
+# Kubernetes master nodes (must be 3 or 5 hosts)
+#my-master-hostname1.mydomain.com ansible_host=<ip1>
+#my-master-hostname2.mydomain.com ansible_host=<ip2>
+#my-master-hostname3.mydomain.com ansible_host=<ip3>
+
+
+[k8s_workers]
+# Kubernetes worker nodes (minimun 3 hosts)
+#my-worker-hostname1.mydomain.com ansible_host=<ip1>
+#my-worker-hostname2.mydomain.com ansible_host=<ip1>
+#my-worker-hostname3.mydomain.com ansible_host=<ip1>
+
+
+[k8s_lb]
+# Kubernetes master nodes (must be 3 or 5 hosts)
+
+#mymasterhostname1.mydomain.com ansible_host=<ip1>
+#mymasterhostname2.mydomain.com ansible_host=<ip2>
+#mymasterhostname3.mydomain.com ansible_host=<ip3>
+
+
+[all:vars]
+kubernetes_version=1.18.5
+pod_network_cidr=10.244.0.0/16
+
+# Kubernetes API Server  Virtual IP address
+#vip_apiserver=<vip>
+
+# Application Virtual IP address
+#vip_apps=<vip>
+
+#apps_domain=<mydomain.com>
+
+# Optional, needed when using private registry
+docker_registry_insecure=false
+docker_registry_k8s_proxy=false
+#docker_registry=<docker_registry>
+#docker_registry_username=<docker_user>
+#docker_registry_password=<docker_password>
+#docker_registry_email=<email>
+#docker_registry_port=5000

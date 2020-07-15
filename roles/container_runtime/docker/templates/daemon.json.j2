@@ -4,9 +4,13 @@
   "log-opts": {
     "max-size": "110m"
   },
+{% if docker_registry_insecure|bool %}
+  "insecure-registries" : ["{{ docker_registry }}:{{ docker_registry_port }}"],
+{% endif %}
   "storage-driver": "overlay2",
   "storage-opts": [
     "overlay2.override_kernel_check=true"
   ]
+
 }
 

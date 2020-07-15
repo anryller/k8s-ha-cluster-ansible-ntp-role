@@ -1,5 +1,6 @@
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
+kubernetesVersion: v{{kubernetes_version}}
 networking:
   podSubnet: {{ pod_network_cidr }}
 etcd:
@@ -7,4 +8,7 @@ etcd:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
 controlPlaneEndpoint: "{{ vip_apiserver }}:5443"
+{% if docker_registry_k8s_proxy|bool  %}
+imageRepository: {{docker_registry| trim}}/kubernetes
+{% endif %}
 
