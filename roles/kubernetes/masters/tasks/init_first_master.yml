@@ -1,7 +1,18 @@
 ---
+- name: Create ccluster configuration
+  template:
+    src: cluster_config.yml.j2
+    dest: /tmp/cluster_config.yml
+  when: inventory_hostname == groups["k8s_masters"][0]
+
 - name: Initialize the first control plane node
-  shell: kubeadm init --control-plane-endpoint "{{ vip_apiserver }}:5443" --upload-certs --pod-network-cidr "{{ pod_network_cidr }}" --service-cidr "{{ service_network_cidr }}"
+  shell: kubeadm init --upload-certs --config /tmp/cluster_config.yml
   register: output
 
 - name: Storing Logs and Generated token for future purpose.
   local_action: copy content={{ output.stdout }} dest="./token.log"
+
+- name: Remove temporary files
+  file:
+    path: /tmp/cluster_config.yml
+    state: absent

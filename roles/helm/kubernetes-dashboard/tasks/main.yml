@@ -5,15 +5,24 @@
     api_version: v1
     kind: Namespace
     state: present
-  when: inventory_hostname in groups["k8s_masters"]
 
 - name: Create kubernetes-dashboard chart value
   template:
     src: kubernetes-dashboard-values.yml.j2
     dest: /tmp/kubernetes-dashboard-values.yml
-  when: inventory_hostname == groups["k8s_masters"][0]
 
 - name: Install kubernetes dashboard chart
   shell: helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --namespace kube-dashboard --values=/tmp/kubernetes-dashboard-values.yml
-  when: inventory_hostname == groups["k8s_masters"][0]
+
+- name: Get kubernetes dashboard token
+  shell: kubectl describe secret -n kube-dashboard $(kubectl get secret -n kube-dashboard | grep  kubernetes-dashboard  | awk '{print $1}') | grep token | awk '{print $2}' | grep -v kubernetes
+  register: kubernetes_dashboard_token
+
+- set_fact:
+    dashboard_token: "{{ kubernetes_dashboard_token.stdout }}"
+
+- debug: var=dashboard_token
+
+- name: Storing kubernetes dashboard token
+  local_action: copy content={{ dashboard_token }} dest="./dashboard_token.log"
 

@@ -1,0 +1,27 @@
+---
+- name: Enable epel-release
+  yum:
+    name: epel-release
+    state: present
+
+- name: Upgrade all packages
+  yum:
+    name: "*"
+    state: latest
+    update_cache: yes
+  when: update_all_packages|bool
+
+- name: Install required packages
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - haveged
+      - rng-tools
+
+- name: Enable service haveged
+  systemd:
+    name: haveged
+    state: started
+    enabled: yes

@@ -1,6 +1,6 @@
 ---
 - name: Initialize the first control plane node
-  local_action: shell grep -m 1 -A 2 "kubeadm join {{ vip_server }}" ./token.log
+  local_action: shell grep -m 1 -A 2 "kubeadm join {{ vip_apiserver }}" ./token.log
   register: kubeadm_join_command
 
 - set_fact:

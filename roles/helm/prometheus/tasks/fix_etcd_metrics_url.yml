@@ -1,0 +1,8 @@
+---
+- name: Fix etcd metric url
+  lineinfile:
+    path: /etc/kubernetes/manifests/etcd.yaml
+    regexp: '- --listen-metrics-urls=http://127.0.0.1:2381'
+    line: '    - --listen-metrics-urls=http://0.0.0.0:2381'
+    backup: yes
+  when: inventory_hostname in groups["k8s_masters"]
