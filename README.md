@@ -96,7 +96,7 @@ ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
 Получение токена для dashboard
 
 ```shell
-kubectl describe secret -n kubernetes-dashboard $(kubectl get secret -n kubernetes-dashboard | grep  dashboard-admin | awk '{print $1}') | grep token | awk '{print $2}'
+kubectl describe secret -n kube-dashboard $(kubectl get secret -n kube-dashboard | grep  kubernetes-dashboard  | awk '{print $1}') | grep token | awk '{print $2}'
 ```
 
 По умолчанию, при установке включаются права "только на чтение", поэтому для включения полных прав (**не рекомендуется для промышленной среды**) необходимо выполнить команду на одном из kubernetes master:
