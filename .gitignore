@@ -1,0 +1,3 @@
+.vagrant
+inventory/*.ini
+playbooks/*.log
