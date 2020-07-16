@@ -9,25 +9,3 @@ unwanted_services:
 
 update_all_packages: yes
 
-common_packages:
-  - "epel-release"
-  - "deltarpm"
-  - "vim"
-  - "mc"
-  - "less"
-  - "curl"
-  - "wget"
-  - "zlib"
-  - "unzip"
-  - "telnet"
-  - "htop"
-  - "nano"
-  - "rsync"
-  - "net-tools"
-  - "bind-utils"
-  - "bash-completion-extras"
-  - "sed"
-  - "jq"
-  - "open-vm-tools"
-  - "python2-openshift"
-  - "PyYAML"

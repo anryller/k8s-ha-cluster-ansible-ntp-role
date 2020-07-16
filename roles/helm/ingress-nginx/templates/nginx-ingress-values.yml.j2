@@ -2,9 +2,9 @@ controller:
   service:
     enabled: true
     externalIPs:
-      - 192.168.100.54
-      - 192.168.100.55
-      - 192.168.100.56
+{% for item in groups['k8s_workers'] %}
+      - {{ hostvars[item].ansible_default_ipv4.address }}
+{% endfor %}
   nodeSelector:
     node-role.kubernetes.io/edge: ''
   tolerations:

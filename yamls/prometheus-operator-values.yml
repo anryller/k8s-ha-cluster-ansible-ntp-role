@@ -1,8 +1,8 @@
 kubeEtcd:
   endpoints:
-    - 192.168.100.51
-    - 192.168.100.52
-    - 192.168.100.53
+  {% for item in groups['k8s_masters'] %}
+    - {{ hostvars[item].ansible_default_ipv4.address }}
+  {% endfor %}
   serviceMonitor:
     insecureSkipVerify: true
     scheme: http
