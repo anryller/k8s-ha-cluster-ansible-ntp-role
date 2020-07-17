@@ -3,13 +3,13 @@
   hosts: k8s_workers
 
   roles:
-  - prepare_host/set_hostname
-  - prepare_host/selinux_disable
-  - prepare_host/service_disable
-  - prepare_host/swap_disable
-  - prepare_host/packages
-  - prepare_host/sshd
-  - prepare_host/ntp
+  - set_hostname
+  - selinux_disable
+  - service_disable
+  - swap_disable
+  - packages
+  - sshd
+  - ntp
   - container_runtime/docker
   - kubernetes/packages
   - kubernetes/user_environment

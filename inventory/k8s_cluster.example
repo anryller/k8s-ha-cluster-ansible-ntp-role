@@ -27,7 +27,7 @@ pod_network_cidr=10.244.0.0/16
 # Kubernetes API Server  Virtual IP address
 #vip_apiserver=<vip>
 
-# Application Virtual IP address
+# TBD; Application Virtual IP address
 #vip_apps=<vip>
 
 #apps_domain=<mydomain.com>

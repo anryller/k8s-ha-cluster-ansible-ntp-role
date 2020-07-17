@@ -13,6 +13,7 @@
 3. [Установка кластера Kubernetes HA (multi-master)](#k8s_ha_installation)
 4. [Добавление рабочей ноды в кластер](#add_worker_node)
 5. [Замечания по Kubernetes Dashboard](#dashboard_comment)
+6. [Пароль администратора Grafana](#grafana_password)
 ---
 ## <a id="requirements"/> Предварительные требования
 |Software|Version|
@@ -119,5 +120,13 @@ subjects:
   name: kubernetes-dashboard
   namespace: kube-dashboard
 EOF
+```
+
+## <a id="grafana_password"/> Пароль администратора Grafana
+
+Для получения текущего пароля администратора Grafana выполнить команду:
+
+```shell
+kubectl --namespace kube-monitoring  get secret prometheus-operator-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
