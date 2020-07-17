@@ -14,13 +14,13 @@
 5. [Замечания по Kubernetes Dashboard](#dashboard_comment)
 6. [Пароль администратора Grafana](#grafana_password)
 ---
-## <a id="requirements"/> Предварительные требования
+## <a id="requirements"> Предварительные требования</a>
 |Software|Version|
 |---|---|
 |CentOS|7.7 (2003)|
 |Ansible|2.9.10|
 
-## <a id="prepare"/>Подготовка окружения
+## <a id="prepare">Подготовка окружения</a>
 
 **Клонировать репозиторий**: На машине, которая будет использоваться в качестве менеджера (это может быть ноутбук пользователя или любая другая машина, которая имеет доступ по ssh к целевым машинам):
 
@@ -54,7 +54,7 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 ```
 
 
-## <a id="prepare"/> Установка кластера Kubernetes HA (multi-master)
+## <a id="prepare"> Установка кластера Kubernetes HA (multi-master)</a>
 
 После всех настроек необходимо запустить k8s playbook, чтобы создать кластер. Этот playbook включает в себя следующие playbook-и, которые могут быть выполнены отдельно:
 |Playbook|Кратное описание|
@@ -72,7 +72,7 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
 ```
 
-## <a id="add_worker_node"/> Добавление рабочей ноды в кластер
+## <a id="add_worker_node"> Добавление рабочей ноды в кластер</a>
 Для добавления новой Worker node необходимо:
 
 - добавить описание ноды в `inventory/<mycluster>.ini` в ссекцию `[k8s_workers]`
@@ -91,7 +91,7 @@ ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
     ```
 ---
 
-## <a id="dashboard_comment"/> Замечания по Kubernetes Dashboard
+## <a id="dashboard_comment"> Замечания по Kubernetes Dashboard</a>
 
 Получение токена для dashboard
 
@@ -121,7 +121,7 @@ subjects:
 EOF
 ```
 
-## <a id="grafana_password"/> Пароль администратора Grafana
+## <a id="grafana_password"> Пароль администратора Grafana</a>
 
 Для получения текущего пароля администратора Grafana выполнить команду:
 
