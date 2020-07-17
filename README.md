@@ -55,7 +55,7 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 ```
 
 
-<a id="prepare">##  Установка кластера Kubernetes HA (multi-master)</a>
+## <a name="prepare">Установка кластера Kubernetes HA (multi-master)</a>
 
 После всех настроек необходимо запустить k8s playbook, чтобы создать кластер. Этот playbook включает в себя следующие playbook-и, которые могут быть выполнены отдельно:
 |Playbook|Кратное описание|
@@ -73,7 +73,7 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
 ```
 
-## <a id="add_worker_node"> Добавление рабочей ноды в кластер</a>
+## <a name="add_worker_node">Добавление рабочей ноды в кластер</a>
 Для добавления новой Worker node необходимо:
 
 - добавить описание ноды в `inventory/<mycluster>.ini` в ссекцию `[k8s_workers]`
@@ -92,7 +92,7 @@ ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
     ```
 ---
 
-## <a id="dashboard_comment"> Замечания по Kubernetes Dashboard</a>
+## <a name="dashboard_comment">Замечания по Kubernetes Dashboard</a>
 
 Получение токена для dashboard
 
@@ -122,7 +122,7 @@ subjects:
 EOF
 ```
 
-## <a id="grafana_password"> Пароль администратора Grafana</a>
+##<a name="grafana_password"> Пароль администратора Grafana</a>
 
 Для получения текущего пароля администратора Grafana выполнить команду:
 
