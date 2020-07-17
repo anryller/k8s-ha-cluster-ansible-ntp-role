@@ -14,7 +14,7 @@
 5. [Замечания по Kubernetes Dashboard](#dashboard_comment)
 6. [Пароль администратора Grafana](#grafana_password)
 ---
-## <a id="requirements"> Предварительные требования</a>
+<a id="requirements">## Предварительные требования</a>
 |Software|Version|
 |---|---|
 |CentOS|7.7 (2003)|
@@ -54,7 +54,7 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 ```
 
 
-## <a id="prepare"> Установка кластера Kubernetes HA (multi-master)</a>
+<a id="prepare">##  Установка кластера Kubernetes HA (multi-master)</a>
 
 После всех настроек необходимо запустить k8s playbook, чтобы создать кластер. Этот playbook включает в себя следующие playbook-и, которые могут быть выполнены отдельно:
 |Playbook|Кратное описание|
