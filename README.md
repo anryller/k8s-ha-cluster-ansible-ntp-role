@@ -1,4 +1,3 @@
-
 # Ansible Playbooks для настройки Kubernetes HA (multi-master) в CentOS 7.
 
 Этот репозиторий содержит Ansible Playbooks для настройки Kubernetes HA в CentOS 7. Для создания playbook-ов использовалась в основномдокументация Kubeadm и рекомендации из других источников. Некоторые playbooks могут использоваться отдельно или как один playbook для развертывания полноценного кластера высокой доступности.
@@ -127,6 +126,7 @@ EOF
 Для получения текущего пароля администратора Grafana выполнить команду:
 
 ```shell
-kubectl --namespace kube-monitoring  get secret prometheus-operator-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl --namespace kube-monitoring get secret prometheus-operator-grafana \
+  -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
