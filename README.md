@@ -55,7 +55,7 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 ```
 
 
-## <a name="prepare">Установка кластера Kubernetes HA (multi-master)</a>
+## <a name="k8s_ha_installation">Установка кластера Kubernetes HA (multi-master)</a>
 
 После всех настроек необходимо запустить k8s playbook, чтобы создать кластер. Этот playbook включает в себя следующие playbook-и, которые могут быть выполнены отдельно:
 |Playbook|Кратное описание|
