@@ -9,7 +9,7 @@
 # Table of Contents
 1. [Предварительные требования](#requirements)
 2. [Подготовка окружения](#prepare)
-3. [Установка кластера Kubernetes HA (multi-master)](#k8s_ha_installation)
+3. [Установка кластера Kubernetes HA multi-master](#k8s_ha_installation)
 4. [Добавление рабочей ноды в кластер](#add_worker_node)
 5. [Замечания по Kubernetes Dashboard](#dashboard_comment)
 6. [Пароль администратора Grafana](#grafana_password)
