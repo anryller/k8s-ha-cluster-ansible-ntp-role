@@ -6,11 +6,18 @@
     kind: Namespace
     state: present
 
+- name: Create Helm values directory
+  file:
+    path: "{{ helm_values_directory }}"
+    state: directory
+    mode: '0755'
+  when: inventory_hostname == groups["k8s_masters"][0]
+
 - name: Create metrics-server chart value
   template:
     src: metrics-server-values.yml.j2
-    dest: /tmp/metrics-server-values.yml
+    dest: "{{ helm_values_directory }}/metrics-server-values.yml"
 
 - name: Install metrics-server chart
-  shell: helm upgrade --install metrics-server stable/metrics-server --namespace kube-monitoring -f /tmp/metrics-server-values.yml
+  shell: helm upgrade --install metrics-server stable/metrics-server --namespace kube-monitoring -f "{{ helm_values_directory }}/metrics-server-values.yml"
 

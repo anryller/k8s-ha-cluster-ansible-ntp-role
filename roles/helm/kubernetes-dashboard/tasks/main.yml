@@ -6,13 +6,20 @@
     kind: Namespace
     state: present
 
+- name: Create Helm values directory
+  file:
+    path: "{{ helm_values_directory }}"
+    state: directory
+    mode: '0755'
+  when: inventory_hostname == groups["k8s_masters"][0]
+
 - name: Create kubernetes-dashboard chart value
   template:
     src: kubernetes-dashboard-values.yml.j2
-    dest: /tmp/kubernetes-dashboard-values.yml
+    dest: "{{ helm_values_directory }}/kubernetes-dashboard-values.yml"
 
 - name: Install kubernetes dashboard chart
-  shell: helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --namespace kube-dashboard --values=/tmp/kubernetes-dashboard-values.yml
+  shell: helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --namespace kube-dashboard --values "{{ helm_values_directory }}/kubernetes-dashboard-values.yml"
 
 - name: Get kubernetes dashboard token
   shell: kubectl describe secret -n kube-dashboard $(kubectl get secret -n kube-dashboard | grep  kubernetes-dashboard  | awk '{print $1}') | grep token | awk '{print $2}' | grep -v kubernetes

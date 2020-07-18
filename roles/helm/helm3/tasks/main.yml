@@ -28,14 +28,9 @@
   when: not stat_result.stat.exists
 
 - name: Add Helm Chart repository
-  shell: helm repo add {{ item.name }} {{ item.url }}
-  #when: not stat_result.stat.exists
-  with_items:
-    - { name: "stable", url: "https://kubernetes-charts.storage.googleapis.com/" }
-    - { name: "kubernetes-dashboard", url: "https://kubernetes.github.io/dashboard/" }
-    - { name: "elastic", url: "https://helm.elastic.co" }
+  shell: helm repo add {{ item.key }} {{ item.value }}
+  with_dict: "{{ helm_repos }}"
 
 - name: Update Help Chart repository
   shell: helm repo update
-  #when: not stat_result.stat.exists
 

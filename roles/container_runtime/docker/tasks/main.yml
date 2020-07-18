@@ -35,19 +35,10 @@
 
 - name: Setup kernel parameters for Docker
   sysctl:
-    name: "{{ item.name }}"
+    name: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present
-  with_items:
-    - { name: net.ipv4.ip_forward, value: 1 }
-    - { name: net.bridge.bridge-nf-call-ip6tables, value: 1 }
-    - { name: net.bridge.bridge-nf-call-iptables, value: 1 }
-    - { name: net.ipv4.tcp_tw_recycle, value: 0 }
-    - { name: vm.overcommit_memory, value: 1 }
-    - { name: vm.panic_on_oom, value: 1 }
-    - { name: fs.inotify.max_user_watches, value: 89100 }
-    - { name: fs.file-max, value: 52706963 }
-    - { name: fs.nr_open, value: 52706963 }
+  with_dict: "{{ kernel_parametes }}"
 
 - name: Set up the Docker daemon
   template:

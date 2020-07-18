@@ -6,11 +6,18 @@
     kind: Namespace
     state: present
 
+- name: Create Helm values directory
+  file:
+    path: "{{ helm_values_directory }}"
+    state: directory
+    mode: '0755'
+  when: inventory_hostname == groups["k8s_masters"][0]
+
 - name: Create prometheus-operator chart value
   template:
     src: prometheus-operator-values.yml.j2
-    dest: /tmp/prometheus-operator-values.yml
+    dest: "{{ helm_values_directory }}/prometheus-operator-values.yml"
 
 - name: Install prometheus-operator chart
-  shell: helm upgrade --install prometheus-operator stable/prometheus-operator --namespace kube-monitoring --values /tmp/prometheus-operator-values.yml
+  shell: helm upgrade --install prometheus-operator stable/prometheus-operator --namespace kube-monitoring --values "{{ helm_values_directory }}/prometheus-operator-values.yml"
 

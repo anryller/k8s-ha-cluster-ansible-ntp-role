@@ -5,7 +5,7 @@
     api_version: v1
     kind: Namespace
     state: present
-  when: inventory_hostname in groups["k8s_masters"]
+  when: inventory_hostname in groups["k8s_masters"][0]
 
 - name: Check edge label exists
   shell: kubectl get nodes -l node-role.kubernetes.io/edge | grep {{ inventory_hostname }} | cat
@@ -19,12 +19,19 @@
   delegate_to: "{{ groups['k8s_masters'][0] }}"
   when: inventory_hostname in groups["k8s_workers"] and label_exists.stdout | length == 0
 
+- name: Create Helm values directory
+  file:
+    path: "{{ helm_values_directory }}"
+    state: directory
+    mode: '0755'
+  when: inventory_hostname == groups["k8s_masters"][0]
+
 - name: Create ingress nginx chart value
   template:
     src: nginx-ingress-values.yml.j2
-    dest: /tmp/nginx-ingress.yaml
+    dest: "{{ helm_values_directory }}/nginx-ingress.yaml"
   when: inventory_hostname == groups["k8s_masters"][0]
 
 - name: Install ingress nginx chart
-  shell: helm upgrade --install nginx-ingress stable/nginx-ingress --namespace ingress-nginx -f /tmp/nginx-ingress.yaml
+  shell: helm upgrade --install nginx-ingress stable/nginx-ingress --namespace ingress-nginx -f "{{ helm_values_directory }}/nginx-ingress.yaml"
   when: inventory_hostname == groups["k8s_masters"][0]
