@@ -101,10 +101,12 @@ ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
     ```bash
     my-new-worker-hostname3.mydomain.com ansible_host=<ip1>
     ```
+
 - протестировать сделанные изменения (dry-run mode) для добавленной ноды
     ```shell
     ansible-playbook -i inventory/<mycluster>.ini --limit k8s-node3.test.lab playbooks/add_worker_node.yml --check
     ```
+
 - если нет ошибок, выполнить добавлени ноды
     ```shell
     ansible-playbook -i inventory/<mycluster>.ini --limit k8s-node3.test.lab playbooks/add_worker_node.yml
