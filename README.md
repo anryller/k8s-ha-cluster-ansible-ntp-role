@@ -42,7 +42,7 @@
 ### Ansible host
 
 - Физическая или виртуальная система
-- OC: CentOS 7.7 (2003) или более поздней версии с опцией установки "Minimal"
+- OC: CentOS 7.7 (2003) или более поздней версии
 - Установленный Ansibe 2.9.10
 
 ## <a name="prepare">Подготовка окружения</a>
@@ -82,7 +82,8 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 ## <a name="k8s_ha_installation">Установка кластера Kubernetes HA (multi-master)</a>
 
 После всех настроек необходимо запустить k8s playbook, чтобы создать кластер. Этот playbook включает в себя следующие playbook-и, которые могут быть выполнены отдельно:
-|Playbook|Кратное описание|
+
+|Playbook|Краткое описание|
 |---|---|
 |prepare_hosts.yml|Предварительная настройка ОС:<br><li>настройка hostname</li><li>установка пакетов</li><li>отключение лишних сервисов</li><li>отключение swap</li><li>отключение selinux</li>|
 |installing_runtime.yml|Установка среды выполнения контейнеров (Docker)|
