@@ -2,18 +2,20 @@
 
 Этот репозиторий содержит Ansible Playbooks для настройки Kubernetes HA в CentOS 7. Для создания playbook-ов использовалась в основномдокументация Kubeadm и рекомендации из других источников. Некоторые playbooks могут использоваться отдельно или как один playbook для развертывания полноценного кластера высокой доступности.
 
-### Схема развёртывания
-![Kubernates HA cluster (multi-master) ](/images/kubernetes_ha_cluster.png)
-
 ---
 # Table of Contents
-1. [Предварительные требования](#requirements)
-2. [Подготовка окружения](#prepare)
-3. [Установка кластера Kubernetes HA multi-master](#k8s_ha_installation)
-4. [Добавление рабочей ноды в кластер](#add_worker_node)
-5. [Замечания по Kubernetes Dashboard](#dashboard_comment)
-6. [Пароль администратора Grafana](#grafana_password)
+1. [Схема развёртывания](#deployments_scheme)
+2. [Предварительные требования](#requirements)
+3. [Подготовка окружения](#prepare)
+4. [Установка кластера Kubernetes HA multi-master](#k8s_ha_installation)
+5. [Добавление рабочей ноды в кластер](#add_worker_node)
+6. [Замечания по Kubernetes Dashboard](#dashboard_comment)
+7. [Пароль администратора Grafana](#grafana_password)
 ---
+
+## <a name="deployments_scheme">Схема развёртывания</a>
+
+![Kubernates HA cluster (multi-master) ](/images/kubernetes_ha_cluster.png)
 
 ## <a name="requirements">Предварительные требования</a>
 
