@@ -20,7 +20,6 @@
 ## <a name="requirements">Предварительные требования</a>
 
 ### Masters
-
 - Физическая или виртуальная система
 - OC: CentOS 7.7 (2003) или более поздней версии с опцией установки "Minimal"
 - Минимум 2 vCPU (дополнительные настоятельно рекомендуются).
@@ -30,7 +29,6 @@
 - Минимум 1 ГБ на жестком диске для файловой системы, содержащей временный каталог системы.
 
 ### Workers
-
 - Физическая или виртуальная система
 - OC: CentOS 7.7 (2003) или более поздней версии с опцией установки "Minimal"
 - Минимум 4 vCPU (дополнительные настоятельно рекомендуются).
@@ -40,7 +38,6 @@
 - Минимум 1 ГБ на жестком диске для файловой системы, содержащей временный каталог системы.
 
 ### Ansible host
-
 - Физическая или виртуальная система
 - OC: CentOS 7.7 (2003) или более поздней версии
 - Установленный Ansibe 2.9.10
@@ -54,7 +51,7 @@ git clone git@gitlab.com:nwtn/infrastructure/k8s-ha-cluster-ansible.git
 cd k8s-ha-cluster-ansible
 ```
 
-**Создайте `inventory/<название среды>`**. В созданном файлt перечислить свои машины и конфигурационные параметры кластера Kubernetes:
+**Создать `inventory/<название среды>`**. В созданном файлt перечислить свои машины и конфигурационные параметры кластера Kubernetes:
 
 ```shell
 cp inventory/k8s_cluster.example <mycluster>.ini
@@ -93,20 +90,17 @@ for i in {1..6}; do ssh-copy-id root@xxx.xxx.xxx.xx$i; done
 |helm_apps.yml|Разворачивание в кластере Kubernetes с помощью Helm 3 системных приложений: <br><li>ingress-nginx</li><li>kubernetes-dashboard</li><li>metrics-server</li><li>prometheus operator</li><li>elkstack</li> |
 |add_worker_node.yml| Добавление в кластер Kubernetes рабочих нод |
 
-Запуск playbook щсуществляется командой:
+Запуск playbook осуществляется командой:
 ```shell
 ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
 ```
 
 ## <a name="add_worker_node">Добавление рабочей ноды в кластер</a>
 Для добавления новой Worker node необходимо:
-
 - добавить описание ноды в `inventory/<mycluster>.ini` в ссекцию `[k8s_workers]`
-
     ```bash
     my-new-worker-hostname3.mydomain.com ansible_host=<ip1>
     ```
-
 - протестировать сделанные изменения (dry-run mode) для добавленной ноды
     ```shell
     ansible-playbook -i inventory/<mycluster>.ini --limit k8s-node3.test.lab playbooks/add_worker_node.yml --check
@@ -115,7 +109,6 @@ ansible-playbook -i inventory/<mycluster>.ini playbooks/k8s.yml
     ```shell
     ansible-playbook -i inventory/<mycluster>.ini --limit k8s-node3.test.lab playbooks/add_worker_node.yml
     ```
----
 
 ## <a name="dashboard_comment">Замечания по Kubernetes Dashboard</a>
 
