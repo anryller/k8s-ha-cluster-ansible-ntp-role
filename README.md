@@ -122,7 +122,7 @@ subjects:
 EOF
 ```
 
-##<a name="grafana_password"> Пароль администратора Grafana</a>
+## <a name="grafana_password"> Пароль администратора Grafana</a>
 
 Для получения текущего пароля администратора Grafana выполнить команду:
 
