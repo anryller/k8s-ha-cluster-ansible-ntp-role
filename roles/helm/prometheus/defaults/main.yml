@@ -1,8 +1,0 @@
----
-helm_repos: {
-  stable: "https://kubernetes-charts.storage.googleapis.com/",
-  kubernetes-dashboard: "https://kubernetes.github.io/dashboard/",
-  elastic: "https://helm.elastic.co",
-  bitnami: "https://charts.bitnami.com/bitnami"
-}
-
