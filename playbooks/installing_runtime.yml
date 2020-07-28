@@ -2,4 +2,4 @@
 - name: Install container runtime
   hosts: all
   roles:
-  - container_runtime/docker
+    - container_runtime/docker

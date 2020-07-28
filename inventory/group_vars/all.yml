@@ -8,4 +8,3 @@ unwanted_services:
   - firewalld
 
 update_all_packages: yes
-

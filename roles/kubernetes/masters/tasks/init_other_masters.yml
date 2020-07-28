@@ -6,7 +6,9 @@
 - set_fact:
     kubeadm_join_contol_plate: "{{ kubeadm_join_command.stdout }}"
 
-- debug: var=kubeadm_join_contol_plate
+- name: Kubernetes join masters command
+  debug:
+    var: kubeadm_join_contol_plate
 
 - name: Add new Kubernetes master member
   shell: "{{ kubeadm_join_contol_plate }}"

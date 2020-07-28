@@ -2,8 +2,16 @@
 - name: Install helm 3 applications
   hosts: all
   roles:
-  - helm/ingress-nginx
-  - { role: helm/metrics-server, when: 'inventory_hostname == groups["k8s_masters"][0]' }
-  - { role: helm/prometheus,     when: 'inventory_hostname == groups["k8s_masters"][0]' }
-  - { role: helm/kubernetes-dashboard, when: 'inventory_hostname == groups["k8s_masters"][0]' }
-
+    - helm/ingress-nginx
+    - {
+        role: helm/metrics-server,
+        when: 'inventory_hostname == groups["k8s_masters"][0]',
+      }
+    - {
+        role: helm/prometheus,
+        when: 'inventory_hostname == groups["k8s_masters"][0]',
+      }
+    - {
+        role: helm/kubernetes-dashboard,
+        when: 'inventory_hostname == groups["k8s_masters"][0]',
+      }

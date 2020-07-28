@@ -3,7 +3,7 @@
   yum:
     name: "{{ docker_requered_packages }}"
     state: present
-    
+
 - name: Add the Docker repository
   shell: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
   args:
@@ -11,7 +11,7 @@
 
 - name: Upgrade all packages
   yum:
-    name: '*'
+    name: "*"
     state: latest
     update_cache: yes
 
@@ -61,4 +61,3 @@
     password: "{{ docker_registry_password }}"
     reauthorize: yes
   when: docker_registry is defined
-

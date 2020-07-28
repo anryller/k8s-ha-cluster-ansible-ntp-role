@@ -10,7 +10,7 @@
   file:
     path: "{{ helm_values_directory }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
   when: inventory_hostname == groups["k8s_masters"][0]
 
 - name: Create prometheus-operator chart value
@@ -20,4 +20,3 @@
 
 - name: Install prometheus-operator chart
   shell: helm upgrade --install prometheus-operator stable/prometheus-operator --namespace kube-monitoring --values "{{ helm_values_directory }}/prometheus-operator-values.yml"
-

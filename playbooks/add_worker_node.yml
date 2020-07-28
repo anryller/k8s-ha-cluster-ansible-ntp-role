@@ -3,22 +3,21 @@
   hosts: k8s_workers
 
   roles:
-  - set_hostname
-  - selinux_disable
-  - service_disable
-  - swap_disable
-  - packages
-  - sshd
-  - ntp
-  - container_runtime/docker
-  - kubernetes/packages
-  - kubernetes/user_environment
-  - kubernetes/workers
+    - set_hostname
+    - selinux_disable
+    - service_disable
+    - swap_disable
+    - packages
+    - sshd
+    - ntp
+    - container_runtime/docker
+    - kubernetes/packages
+    - kubernetes/user_environment
+    - kubernetes/workers
 
   post_tasks:
-  - name: Reboot a virtual machine that might have lots of updates to apply
-    reboot:
-      connect_timeout: 60
-      msg: "Reboot initiated by Ansible"
-      reboot_timeout: 120
-
+    - name: Reboot a virtual machine that might have lots of updates to apply
+      reboot:
+        connect_timeout: 60
+        msg: "Reboot initiated by Ansible"
+        reboot_timeout: 120

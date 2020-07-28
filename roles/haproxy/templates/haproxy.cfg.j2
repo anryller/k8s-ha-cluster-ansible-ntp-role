@@ -42,4 +42,3 @@ backend back-api-proxy
 {% for item in groups['k8s_masters'] %}
   server {{ item }} {{ hostvars[item].ansible_default_ipv4.address }}:6443 check
 {% endfor %}
-

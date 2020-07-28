@@ -10,7 +10,7 @@
   file:
     path: "{{ helm_values_directory }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
   when: inventory_hostname == groups["k8s_masters"][0]
 
 - name: Create kubernetes-dashboard chart value
@@ -28,8 +28,9 @@
 - set_fact:
     dashboard_token: "{{ kubernetes_dashboard_token.stdout }}"
 
-- debug: var=dashboard_token
+- name: Kubernetes Dashboard token
+  debug:
+    var: dashboard_token
 
 - name: Storing kubernetes dashboard token
   local_action: copy content={{ dashboard_token }} dest="./dashboard_token.log"
-

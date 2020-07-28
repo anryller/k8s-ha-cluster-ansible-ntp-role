@@ -4,4 +4,3 @@
 - import_playbook: deploy_kubernetes.yml
 - import_playbook: helm_installation.yml
 - import_playbook: helm_apps.yml
-

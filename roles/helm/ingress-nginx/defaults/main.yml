@@ -1,0 +1,2 @@
+---
+helm_values_directory: /opt/helm_data

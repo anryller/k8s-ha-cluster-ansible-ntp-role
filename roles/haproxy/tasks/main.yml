@@ -10,8 +10,8 @@
     state: directory
 
 - name: Set up HAproxy config
-  template: 
-    src: haproxy.cfg.j2 
+  template:
+    src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
 
 - name: Set up HAproxy systemd service
@@ -27,4 +27,3 @@
     daemon_reload: yes
     state: started
     enabled: yes
-

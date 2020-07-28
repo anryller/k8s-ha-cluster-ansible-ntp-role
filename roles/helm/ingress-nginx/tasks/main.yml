@@ -23,7 +23,7 @@
   file:
     path: "{{ helm_values_directory }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
   when: inventory_hostname == groups["k8s_masters"][0]
 
 - name: Create ingress nginx chart value

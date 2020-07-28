@@ -7,7 +7,9 @@
 - set_fact:
     kubeadm_join: "{{ kubeadm_join_cmd.stdout }}"
 
-- debug: var=kubeadm_join
+- name: Kubernetes join worker node command
+  debug:
+    var: kubeadm_join
 
 - name: Run kubeadm join
   shell: "{{ kubeadm_join }} --ignore-preflight-errors=swap"
@@ -16,4 +18,3 @@
   shell: kubectl label node {{ inventory_hostname }}  node-role.kubernetes.io/worker=
   register: kubeadm_join_cmd
   delegate_to: "{{ groups['k8s_masters'][0] }}"
-

@@ -1,4 +1,3 @@
 ---
 - name: disable selinux online
   command: setenforce 0
-

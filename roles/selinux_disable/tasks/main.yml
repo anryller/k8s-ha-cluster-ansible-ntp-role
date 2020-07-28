@@ -3,4 +3,4 @@
   selinux:
     state: disabled
   notify:
-  - disable selinux online
+    - disable selinux online

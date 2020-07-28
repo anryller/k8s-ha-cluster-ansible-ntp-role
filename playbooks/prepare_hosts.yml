@@ -3,19 +3,19 @@
   hosts: all
 
   roles:
-  - set_hostname
-  - selinux_disable
-  - service_disable
-  - swap_disable
-  - packages
-  - sshd
-  - ntp
-  - entropy
+    - set_hostname
+    - selinux_disable
+    - service_disable
+    - swap_disable
+    - packages
+    - sshd
+    - ntp
+    - entropy
 
   post_tasks:
-  - name: Reboot a virtual machine that might have lots of updates to apply
-    reboot:
-      pre_reboot_delay: 10
-      post_reboot_delay: 60
-      msg: "Reboot initiated by Ansible"
-      reboot_timeout: 90
+    - name: Reboot a virtual machine that might have lots of updates to apply
+      reboot:
+        pre_reboot_delay: 10
+        post_reboot_delay: 60
+        msg: "Reboot initiated by Ansible"
+        reboot_timeout: 90

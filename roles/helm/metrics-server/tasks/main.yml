@@ -10,7 +10,7 @@
   file:
     path: "{{ helm_values_directory }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
   when: inventory_hostname == groups["k8s_masters"][0]
 
 - name: Create metrics-server chart value
@@ -20,4 +20,3 @@
 
 - name: Install metrics-server chart
   shell: helm upgrade --install metrics-server stable/metrics-server --namespace kube-monitoring -f "{{ helm_values_directory }}/metrics-server-values.yml"
-

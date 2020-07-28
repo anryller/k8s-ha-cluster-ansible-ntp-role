@@ -1,5 +1,5 @@
 ---
-- name: Disable DNS resolving clinets address 
+- name: Disable DNS resolving clinets address
   lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^UseDNS"
@@ -7,4 +7,4 @@
     insertafter: EOF
     state: present
   notify:
-  - Restart sshd
+    - Restart sshd
