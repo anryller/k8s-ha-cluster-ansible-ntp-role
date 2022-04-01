@@ -2,9 +2,15 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Include OS-Release specific variables on RHEL 7-8.
+  include_vars: RedHat-7-8.yml
+  when:
+    - ansible_os_family == 'RedHat'
+    - ansible_distribution_major_version == '8'
+
 - name: Ensure NTP-related packages are installed.
   package:
-    name: ntp
+    name: "{{ ntp_package }}"
     state: present
 
 - name: Ensure tzdata package is installed (Linux).
@@ -36,7 +42,8 @@
 
 - name: Generate ntp.conf file
   template:
-    src: ntp.conf.j2
-    dest: /etc/ntp.conf
+    src: "{{ ntp_config_file | basename }}.j2"
+    dest: "{{ ntp_config_file }}"
+    mode: 0644
   notify: restart ntp
   when: ntp_manage_config

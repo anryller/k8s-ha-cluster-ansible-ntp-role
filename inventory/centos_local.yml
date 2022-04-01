@@ -1,0 +1,34 @@
+[k8s_masters]
+# Kubernetes master nodes (must be 3 or 5 hosts)
+#my-master-hostname3.mydomain.com ansible_host=<ip3>
+#test-clickhouse-01 ansible_host=192.168.45.105
+test-clickhouse-n01 ansible_host=192.168.45.106
+test-clickhouse-n02 ansible_host=192.168.45.107
+test-clickhouse-n03 ansible_host=192.168.45.108
+
+[k8s_workers]
+
+
+[k8s_lb]
+
+
+[all:vars]
+kubernetes_version=1.18.5
+pod_network_cidr=10.244.0.0/16
+
+# Kubernetes API Server  Virtual IP address
+#vip_apiserver=<vip>
+
+# TBD; Application Virtual IP address
+#vip_apps=<vip>
+
+#apps_domain=<mydomain.com>
+
+# Optional, needed when using private registry
+docker_registry_insecure=false
+docker_registry_k8s_proxy=false
+#docker_registry=<docker_registry>
+#docker_registry_username=<docker_user>
+#docker_registry_password=<docker_password>
+#docker_registry_email=<email>
+#docker_registry_port=5000

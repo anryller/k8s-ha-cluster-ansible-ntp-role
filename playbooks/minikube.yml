@@ -1,0 +1,6 @@
+---
+- name: common configuration new hosts
+  hosts: all
+
+  roles:
+    - ansible_role_minikube

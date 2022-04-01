@@ -1,0 +1,6 @@
+---
+ntp_daemon: chronyd
+ntp_tzdata_package: tzdata
+ntp_package: chrony
+ntp_config_file: /etc/chrony.conf
+ntp_cron_daemon: crond

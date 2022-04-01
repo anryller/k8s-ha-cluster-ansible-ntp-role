@@ -1,0 +1,6 @@
+---
+- name: common configuration new hosts
+  hosts: localhost
+
+  roles:
+    - ntp
