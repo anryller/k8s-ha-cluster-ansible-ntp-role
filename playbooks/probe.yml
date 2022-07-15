@@ -1,0 +1,330 @@
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-bch
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_bch_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-bch
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_bch_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-bnb
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_bnb_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-bnb
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_bnb_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-bsc
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_bsc_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-bsc
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_bsc_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-btc
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_btc_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-btc
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_btc_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-dash
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_dash_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-dash
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_dash_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-eos
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_eos_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-eos
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_eos_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-eth
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_eth_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-eth
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_eth_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-ltc
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_ltc_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-ltc
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_ltc_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-omni
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_omni_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-omni
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_omni_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-xlm
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_xlm_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-xlm
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_xlm_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-xrp
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_xrp_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-xrp
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_xrp_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.

@@ -1,0 +1,309 @@
+
+http_2xx_post_bch_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["bch"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_bch_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["bch"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_bnb_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["bnb"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_bnb_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["bnb"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_bsc_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["bsc"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_bsc_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["bsc"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_btc_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["btc"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_btc_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["btc"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_dash_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["dash"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_dash_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["dash"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_eos_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["eos"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_eos_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["eos"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_eth_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["eth"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_eth_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["eth"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_ltc_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["ltc"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_ltc_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["ltc"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_omni_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["omni"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_omni_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["omni"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_xlm_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["xlm"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_xlm_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["xlm"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_xrp_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["xrp"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_xrp_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["xrp"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+

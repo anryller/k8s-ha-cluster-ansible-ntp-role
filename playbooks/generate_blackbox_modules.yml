@@ -1,0 +1,20 @@
+- hosts: localhost
+
+  # Declare the variables we want to use here - set their names and values
+  # These will be used in the task
+  vars:
+    myusername: hello
+    mypassword: goodbye
+    anothervar: foo
+
+  tasks:
+  - include_vars: ../vars/blackbox-modules.yml
+
+  - name: ensure all template files are rendered
+    # Configure the template module to use dynamic values from the loop
+    template:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest }}'
+    loop:
+      - { src: 'modules.j2', dest: 'modules.yml' }
+      - { src: 'probe.yml.j2', dest: 'probe.yml' }

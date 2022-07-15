@@ -1,0 +1,32 @@
+{% for item in alert_tokens %}
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-height-{{ item }}
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_{{ item }}_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: explorer-node-height-{{ item }}
+  namespace: explorer
+spec:
+  interval: 60s
+  module: http_2xx_post_{{ item }}_node_height
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+      - http://explorer-rpc.explorer.svc.cluster.local.
+{% endfor %}

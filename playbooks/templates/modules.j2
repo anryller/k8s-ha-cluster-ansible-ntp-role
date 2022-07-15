@@ -1,0 +1,31 @@
+
+{% for item in alert_tokens %}
+http_2xx_post_{{ item }}_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "height"],"data":["{{ item }}"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+http_2xx_post_{{ item }}_node_height:
+  prober: http
+  timeout: 15s
+  http:
+    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+    valid_status_codes: []
+    method: POST
+    headers: 
+        content-type: application/json
+    body: '{"path":["check", "nodeHeight"],"data":["{{ item }}"]}'
+    preferred_ip_protocol: "ip4"
+    ip_protocol_fallback: false
+    fail_if_body_matches_regexp: [".*nok.*"]
+
+{% endfor %}
